@@ -6,9 +6,15 @@ from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string
 # time import
 from time import sleep
+import os
+
+def install(package):
+    os.system("pip install " + str(package))
+    print("Installed", package.upper())
 
 if __name__ == '__main__':
-
+    install("openpyxl")
+    install("selenium") 
     meet_link = input('Paste the link of the Google Meet: ')
 
     # Some necessary things for automation with google driver
@@ -26,11 +32,11 @@ if __name__ == '__main__':
         "profile.default_content_setting_values.notifications": 1
       })
     options = webdriver.ChromeOptions()
-    options.add_argument(r"--user-data-dir=C:\\Users\\mahij\\AppData\\Local\\Google\\Chrome\\User Data")
+    options.add_argument(r"--user-data-dir=C:\\Users\\user_name\\AppData\\Local\\Google\\Chrome\\User Data") #change user_name
     options.add_argument(r'--profile-directory=Profile 3')  # e.g. Profile 3
-    driver = webdriver.Chrome(executable_path=r'E:\Akshit Works\Programming\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(executable_path=r'path\to\chrome_driver', options=options)#add your chromedriver path here
 
-    driver.get('https://meet.google.com/landing?authuser=1')
+    driver.get('https://meet.google.com/landing?authuser=1') #change this if you are using a personal id
 
     # Enter the meeting
     # Case when logged in with personal gmail account
